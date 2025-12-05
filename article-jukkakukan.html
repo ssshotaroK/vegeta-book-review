@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>十角館の殺人 書評 | ベジータの戦闘力図書館</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Yuji+Mai&family=Shippori+Mincho+B1:wght@400;700&family=Zen+Antique&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Shippori Mincho B1', serif;
+            background: linear-gradient(135deg, #0a1628 0%, #1a2332 50%, #0f3460 100%);
+            background-attachment: fixed;
+            color: #ffffff;
+            line-height: 1.8;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* 宇宙背景エフェクト */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 20% 30%, white, transparent),
+                radial-gradient(2px 2px at 60% 70%, white, transparent),
+                radial-gradient(1px 1px at 50% 50%, white, transparent),
+                radial-gradient(1px 1px at 80% 10%, white, transparent),
+                radial-gradient(2px 2px at 90% 60%, white, transparent),
+                radial-gradient(1px 1px at 33% 80%, white, transparent);
+            background-size: 200% 200%;
+            animation: stars 60s linear infinite;
+            opacity: 0.5;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes stars {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100%); }
+        }
+
+        /* エネルギーオーラエフェクト */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            animation: aura 4s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes aura {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.5; }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ヘッダー */
+        header {
+            background: rgba(10, 22, 40, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-title {
+            font-family: 'Yuji Mai', serif;
+            font-size: 24px;
+            color: #d4af37;
+            text-decoration: none;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin-left: 30px;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #d4af37;
+        }
+
+        /* 記事ヘッダー */
+        .article-header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 20px;
+            background: rgba(15, 52, 96, 0.3);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .article-category {
+            display: inline-block;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.1));
+            color: #d4af37;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .article-title {
+            font-family: 'Yuji Mai', serif;
+            font-size: 42px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            line-height: 1.4;
+        }
+
+        .article-subtitle {
+            font-size: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 20px;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+
+        /* 戦闘力評価 */
+        .power-rating {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            border: 2px solid rgba(212, 175, 55, 0.4);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .power-rating h3 {
+            font-family: 'Yuji Mai', serif;
+            color: #d4af37;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .power-number {
+            font-size: 48px;
+            font-weight: bold;
+            color: #d4af37;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            margin: 10px 0;
+        }
+
+        /* ネタバレ警告 */
+        .spoiler-warning {
+            background: linear-gradient(135deg, rgba(255, 50, 50, 0.2), rgba(255, 100, 100, 0.1));
+            border: 3px solid rgba(255, 50, 50, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { border-color: rgba(255, 50, 50, 0.5); box-shadow: 0 0 10px rgba(255, 50, 50, 0.3); }
+            50% { border-color: rgba(255, 50, 50, 0.8); box-shadow: 0 0 30px rgba(255, 50, 50, 0.5); }
+        }
+
+        .spoiler-warning h3 {
+            font-family: 'Yuji Mai', serif;
+            color: #ff5555;
+            font-size: 32px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(255, 85, 85, 0.5);
+        }
+
+        .spoiler-warning p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        /* ベジータ吹き出しセクション */
+        .vegeta-speech {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.05));
+            border-radius: 20px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .vegeta-speech.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .vegeta-avatar {
+            flex-shrink: 0;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 3px solid #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .vegeta-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .speech-bubble {
+            flex: 1;
+            position: relative;
+            background: rgba(15, 52, 96, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 20px 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border: 15px solid transparent;
+        }
+
+        .vegeta-speech:not(.reverse) .speech-bubble::before {
+            left: -25px;
+            border-right-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .vegeta-speech.reverse .speech-bubble::before {
+            right: -25px;
+            border-left-color: rgba(212, 175, 55, 0.3);
+        }
+
+        /* 記事本文 */
+        .article-content {
+            background: rgba(15, 52, 96, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .article-content h2 {
+            font-family: 'Yuji Mai', serif;
+            color: #d4af37;
+            font-size: 28px;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .article-content h3 {
+            color: #d4af37;
+            font-size: 22px;
+            margin: 30px 0 15px 0;
+        }
+
+        .article-content p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 16px;
+        }
+
+        .article-content ul {
+            margin: 20px 0;
+            padding-left: 30px;
+        }
+
+        .article-content li {
+            margin-bottom: 10px;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .vegeta-quote {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15), rgba(212, 175, 55, 0.05));
+            border-left: 4px solid #d4af37;
+            padding: 20px 30px;
+            margin: 30px 0;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* アフィリエイトボタン */
+        .affiliate-section {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05));
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .affiliate-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37, #b8941e);
+            color: #0a1628;
+            padding: 15px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .affiliate-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
+        }
+
+        /* フッター */
+        footer {
+            background: rgba(10, 22, 40, 0.9);
+            backdrop-filter: blur(10px);
+            border-top: 2px solid rgba(212, 175, 55, 0.3);
+            padding: 40px 20px;
+            margin-top: 80px;
+            text-align: center;
+        }
+
+        .footer-links {
+            margin-bottom: 20px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #d4af37;
+        }
+
+        .copyright {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 14px;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 32px;
+            }
+
+            .article-subtitle {
+                font-size: 16px;
+            }
+
+            .article-content {
+                padding: 20px;
+            }
+
+            .power-number {
+                font-size: 36px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 0 10px;
+            }
+
+            .vegeta-speech {
+                flex-direction: column !important;
+                align-items: center;
+                text-align: center;
+            }
+
+            .vegeta-avatar {
+                width: 100px;
+                height: 100px;
+            }
+
+            .speech-bubble::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="site-title">ベジータの戦闘力図書館</a>
+            <nav>
+                <a href="index.html">ホーム</a>
+                <a href="privacy-policy.html">プライバシーポリシー</a>
+                <a href="contact.html">お問い合わせ</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 記事ヘッダー -->
+        <article>
+            <div class="article-header">
+                <div class="article-category">語 小説・物語</div>
+                <h1 class="article-title">十角館の殺人</h1>
+                <p class="article-subtitle">新本格ミステリーの原点、この俺が認めた推理小説だ</p>
+                <div class="article-meta">
+                    <span>著者: 綾辻行人</span>
+                    <span>|</span>
+                    <span>2025.12.05</span>
+                </div>
+            </div>
+
+            <!-- ベジータ登場1: ネタバレ警告 -->
+            <div class="vegeta-speech">
+                <div class="vegeta-avatar">
+                    <img src="https://www.genspark.ai/api/files/s/gwvc31HY" alt="ベジータ">
+                </div>
+                <div class="speech-bubble">
+                    <strong>⚠️ 警告: ネタバレ注意 ⚠️</strong><br><br>
+                    いいか、この先を読むか読まないかは貴様の自由だ。<br>
+                    だが、一度読んだら後戻りはできん。<br>
+                    <strong>このトリックを知らずに本編を読みたい弱虫は、今すぐ立ち去れ。</strong><br>
+                    この俺は容赦しないぞ。
+                </div>
+            </div>
+
+            <!-- 戦闘力評価 -->
+            <div class="power-rating">
+                <h3>ベジータ戦闘力評価</h3>
+                <div class="power-number">9,200</div>
+                <p>日本推理小説界に革命を起こした一撃。新本格の原点にして頂点だ。</p>
+            </div>
+
+            <!-- 記事本文 -->
+            <div class="article-content">
+                <h2>貴様らに教えてやる。真の推理小説とは何かを。</h2>
+                
+                <p>1987年、この作品が登場したとき、日本のミステリー界は震撼した。社会派推理が主流だった時代に、<strong>「論理」と「トリック」で勝負する</strong>という、本来の推理小説の姿を取り戻したのだ。</p>
+
+                <p>著者の綾辻行人は、この一作で「新本格ミステリー」という時代を切り開いた。この俺が認めるに値する、戦闘力の高い作品だ。</p>
+
+                <!-- ベジータ登場2: 本格ミステリーについて -->
+                <div class="vegeta-speech reverse">
+                    <div class="vegeta-avatar">
+                        <img src="https://www.genspark.ai/api/files/s/gwvc31HY" alt="ベジータ">
+                    </div>
+                    <div class="speech-bubble">
+                        クローズドサークル、見立て殺人、そして最後の一撃――これぞ本格ミステリーの王道だ。貴様らも震えるがいい。
+                    </div>
+                </div>
+
+                <h2>あらすじ: 孤島の館で繰り広げられる連続殺人</h2>
+
+                <p>舞台は瀬戸内海に浮かぶ孤島「角島（つのじま）」。かつて建築家・中村青司が建てた奇妙な「十角館」が存在する。</p>
+
+                <p>大学のミステリー研究会のメンバー7人が、この島を訪れる。彼らはそれぞれアガサ・クリスティの探偵名を名乗っていた――</p>
+
+                <ul>
+                    <li><strong>エラリイ</strong>（部長）</li>
+                    <li><strong>カー</strong></li>
+                    <li><strong>ルルウ</strong></li>
+                    <li><strong>ポウ</strong></li>
+                    <li><strong>オルツィ</strong></li>
+                    <li><strong>ヴァン</strong></li>
+                    <li><strong>アガサ</strong>（紅一点）</li>
+                </ul>
+
+                <p>だが、島に渡った彼らを待っていたのは、<strong>一人、また一人と殺されていく恐怖</strong>だった。</p>
+
+                <p>そして本土では、かつてこの島で起きた事件の真相を探る者たちが動き始める――</p>
+
+                <h2>この作品の「戦闘力」が高い理由</h2>
+
+                <h3>1. 完璧なクローズドサークル</h3>
+                <p>孤島、嵐、通信手段の遮断――外部との接触を完全に断たれた状況で、犯人は誰なのか。<strong>この緊張感こそが、推理小説の醍醐味だ。</strong></p>
+
+                <h3>2. 見立て殺人の恐怖</h3>
+                <p>被害者たちは、アガサ・クリスティの名作『そして誰もいなくなった』のマザーグースの詩になぞらえて殺されていく。この演出が、読者の恐怖を煽る。</p>
+
+                <h3>3. 「叙述トリック」の完成形</h3>
+                <p>この作品最大の武器は、<strong>読者を欺く「語り」の技術</strong>だ。</p>
+
+                <!-- ベジータ登場3: 叙述トリックについて -->
+                <div class="vegeta-speech">
+                    <div class="vegeta-avatar">
+                        <img src="https://www.genspark.ai/api/files/s/gwvc31HY" alt="ベジータ">
+                    </div>
+                    <div class="speech-bubble">
+                        貴様らは最後のページで、全てをひっくり返されるだろう。それが叙述トリックの恐ろしさだ。作者は最初から罠を仕掛けていた――気づかなかった貴様らの負けだ。
+                    </div>
+                </div>
+
+                <p>島での惨劇と、本土での推理が交互に描かれるが、その「視点」に大きな罠が仕掛けられている。</p>
+
+                <p><strong>犯人は、実は物語の最初から読者の目の前にいた。</strong>だが、読者はそれに気づかない。これこそが、綾辻行人の計算し尽くされた戦術だ。</p>
+
+                <h2>衝撃のラスト――全てが反転する瞬間</h2>
+
+                <p>島で唯一生き残ったのは「エラリイ」だと思われていた。だが、真実は違った。</p>
+
+                <p><strong>生き残ったのは「犯人」であり、本土で推理していた人物こそが――</strong></p>
+
+                <p>この反転の瞬間、読者は全てのピースが一気に繋がる感覚を味わう。<strong>これが推理小説の最高峰だ。</strong></p>
+
+                <!-- ベジータ登場4: 衝撃のラストについて -->
+                <div class="vegeta-speech reverse">
+                    <div class="vegeta-avatar">
+                        <img src="https://www.genspark.ai/api/files/s/gwvc31HY" alt="ベジータ">
+                    </div>
+                    <div class="speech-bubble">
+                        この一撃を受けて立てる者だけが、真の推理小説ファンだ。この俺でさえ、初めて読んだ時は驚愕した――認めてやろう、綾辻行人、貴様は強い。
+                    </div>
+                </div>
+
+                <h2>新本格ミステリーの幕開け</h2>
+
+                <p>この作品以降、日本のミステリー界は「新本格」ブームに突入した。</p>
+
+                <ul>
+                    <li>有栖川有栖『月光ゲーム』</li>
+                    <li>法月綸太郎『密閉教室』</li>
+                    <li>我孫子武丸『殺戮にいたる病』</li>
+                </ul>
+
+                <p>これらの名作は全て、『十角館の殺人』が切り開いた道を進んだ作品だ。</p>
+
+                <h2>この俺の結論</h2>
+
+                <p>『十角館の殺人』は、<strong>推理小説の原点にして最高峰</strong>だ。</p>
+
+                <p>トリック、構成、伏線、そして最後の一撃――全てが完璧に計算されている。</p>
+
+                <p>もし貴様が「本格ミステリー」を一度も読んだことがないなら、この作品から始めろ。</p>
+
+                <!-- ベジータ登場5: 最終評価 -->
+                <div class="vegeta-speech">
+                    <div class="vegeta-avatar">
+                        <img src="https://www.genspark.ai/api/files/s/gwvc31HY" alt="ベジータ">
+                    </div>
+                    <div class="speech-bubble">
+                        推理小説の戦闘力を測りたければ、まずこの一冊を読め。話はそれからだ。この俺が保証する――貴様の読書人生が変わる一冊だ。
+                    </div>
+                </div>
+
+                <h2>こんな貴様におすすめだ</h2>
+                <ul>
+                    <li>本格推理小説の「王道」を味わいたい者</li>
+                    <li>どんでん返しに衝撃を受けたい者</li>
+                    <li>クローズドサークルものが好きな者</li>
+                    <li>新本格ミステリーの原点を知りたい者</li>
+                    <li>論理的思考を鍛えたい者</li>
+                </ul>
+
+                <p><strong>この作品を読まずして、推理小説を語るな。</strong></p>
+            </div>
+
+            <!-- アフィリエイトセクション -->
+            <div class="affiliate-section">
+                <h3 style="color: #d4af37; margin-bottom: 20px;">この書物を手に入れろ</h3>
+                <p style="margin-bottom: 20px; color: rgba(255, 255, 255, 0.8);">
+                    戦闘力を高めたければ、今すぐ行動しろ。<br>
+                    この俺が認めた一冊だ。
+                </p>
+                <a href="https://amzn.to/your-affiliate-link" class="affiliate-button" target="_blank" rel="noopener">
+                    📚 Amazonで購入する
+                </a>
+                <a href="https://hb.afl.rakuten.co.jp/your-affiliate-link" class="affiliate-button" target="_blank" rel="noopener">
+                    📚 楽天で購入する
+                </a>
+            </div>
+        </article>
+    </div>
+
+    <!-- フッター -->
+    <footer>
+        <div class="footer-links">
+            <a href="privacy-policy.html">プライバシーポリシー</a>
+            <a href="contact.html">お問い合わせ</a>
+        </div>
+        <p class="copyright">&copy; 2025 ベジータの戦闘力図書館. All rights reserved.</p>
+    </footer>
+</body>
+</html>
